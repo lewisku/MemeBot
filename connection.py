@@ -18,32 +18,30 @@ def parseUserArguments(num):
 				choice = int(subredditChoice.read())
 				
 			
-			sub = ["me_irl","meow_irl","woofbarkwoof","notmyjob","firstworldanarchists", "memes"]
+			sub = ["me_irl","meow_irl","woofbarkwoof","notmyjob","firstworldanarchists", "memes","blackpeopletwitter"]
 				
 			#call Zach's function to get 30 memes
-			if choice > 5:
+			if choice > len(sub)-1:
 				choice = 0
 			filenames = redditmemes.getSomeMemes(sub[choice], 10)
 			choice = choice + 1
-			if choice > 5:
+			if choice > len(sub)-1:
 				choice = 0
 			filenames += redditmemes.getSomeMemes(sub[choice],10)
 			choice = choice + 1
-			if choice > 5:
+			if choice > len(sub)-1:
 				choice = 0
 			filenames += redditmemes.getSomeMemes(sub[choice],10)
-			choice = choice + 1
-			if choice > 5:
-				choice = 0			
+			choice = choice + 1			
 			
-			#write value of next subreddit back to file	
+			#write index value of next subreddit back to file	
 			choice_s = repr(choice)
 			with open('subFile.txt','w') as subredditChoice:
 				subredditChoice.write(choice_s)
 			
 			id = list()
 			for i,x in enumerate(filenames):
-				#parsing filename
+				#parsing filename (dont use this info yet but may in future)
 				extension = x.split(".")[-1]
 				subreddit = x.split("_")[-6]
 				if subreddit == "irl":
